@@ -1,5 +1,5 @@
 import GeneticAlgorithm from "./components/GeneticAlgorithm"
-import "./App.css"
+import "./styles/App.css"
 
 function App() {
   return (

@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react"
 
 function GeneticAlgorithm() {
+  const [populationSize, setPopulationSize] = useState(2)
+  const [chromosomeLength, setChromosomeLength] = useState(4)
+  const [generations, setGenerations] = useState(100)
+  const [crossoverRate, setCrossoverRate] = useState(0.7)
+  const [mutationRate, setMutationRate] = useState(0.3)
+
   const [result, setResult] = useState(null)
 
-  //
   function fitness(x) {
     return Math.abs((x - 5) / (2 + Math.sin(x)))
   }
@@ -67,8 +72,14 @@ function GeneticAlgorithm() {
     return parseInt(binaryStr, 2)
   }
 
-  function geneticAlgorithm( config ) {
-    const { populationSize, chromosomeLength, generations, crossoverRate, mutationRate } = config
+  function geneticAlgorithm(config) {
+    const {
+      populationSize,
+      chromosomeLength,
+      generations,
+      crossoverRate,
+      mutationRate,
+    } = config
 
     let population = generatePopulation(populationSize, chromosomeLength)
 
@@ -81,8 +92,8 @@ function GeneticAlgorithm() {
 
     for (let i = 1; i < populationSize; i++) {
       const currentFitness = fitness(binaryToDecimal(population[i]))
+
       if (currentFitness > bestFitness) {
-        // Cambio aquí: buscamos un fitness más alto
         bestFitness = currentFitness
         bestIndividual = population[i]
       }
@@ -95,25 +106,85 @@ function GeneticAlgorithm() {
     }
   }
 
-  //
-
   useEffect(() => {
     const config = {
-      populationSize: 1000,
-      chromosomeLength: 4,
-      generations: 1000,
-      crossoverRate: 0.7,
-      mutationRate: 0.3,
+      populationSize,
+      chromosomeLength,
+      generations,
+      crossoverRate,
+      mutationRate,
     }
 
     const result = geneticAlgorithm(config)
 
     setResult(result)
-  }, [])
+  }, [
+    populationSize,
+    chromosomeLength,
+    generations,
+    crossoverRate,
+    mutationRate,
+  ])
 
   if (!result) return <div>loading...</div>
+
   return (
     <div>
+      <h1>Genetic Algorithm Configurations</h1>
+      <div>
+        <label>
+          Population Size:
+          <input
+            type="number"
+            value={populationSize}
+            onChange={(e) => setPopulationSize(Number(e.target.value))}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Chromosome Length:
+          <input
+            type="number"
+            value={chromosomeLength}
+            onChange={(e) => setChromosomeLength(Number(e.target.value))}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Generations:
+          <input
+            type="number"
+            step="10"
+            value={generations}
+            onChange={(e) => setGenerations(Number(e.target.value))}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Crossover Rate:
+          <input
+            type="number"
+            step="0.1"
+            value={crossoverRate}
+            onChange={(e) => setCrossoverRate(Number(e.target.value))}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Mutation Rate:
+          <input
+            type="number"
+            step="0.1"
+            value={mutationRate}
+            onChange={(e) => setMutationRate(Number(e.target.value))}
+          />
+        </label>
+      </div>
+
       <h1>Genetic Algorithm Results</h1>
       <p>
         <strong>Best Individual:</strong> {result.individual}

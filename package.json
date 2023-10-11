@@ -11,7 +11,10 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "chartjs-plugin-datalabels": "^2.2.0",
+    "katex": "^0.16.9",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {

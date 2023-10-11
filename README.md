@@ -1,8 +1,15 @@
-# React + Vite
+## Requisitos para ejecutar un programa localmente en Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Para ejecutar un programa localmente en Vite, se necesitan los siguientes requisitos:
 
-Currently, two official plugins are available:
+- Node.js (versión 12 o superior)
+- npm (versión 5.2 o superior) o yarn (versión 1.0 o superior)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Además, se recomienda tener conocimientos básicos de JavaScript y de la línea de comandos para poder trabajar con Vite de manera efectiva.
+
+Para instalar Vite, se puede utilizar los siguientes comandos:
+
+    npm install
+    npm run dev
+
+Recuerda hacerlo sobre el archivo raiz del proyecto.
